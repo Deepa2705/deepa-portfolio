@@ -4,9 +4,28 @@
 
 const menuBtn = document.querySelector(".menu-btn");
 const navLinks = document.querySelector(".nav-links");
+const icon = menuBtn.querySelector("i");
 
 menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("show-menu");
+
+    navLinks.classList.toggle("active");
+
+    icon.classList.add("fade");
+
+    setTimeout(() => {
+
+        if(navLinks.classList.contains("active")){
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-times");
+        }else{
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+        }
+
+        icon.classList.remove("fade");
+
+    }, 150);
+
 });
 
 // ===============================
@@ -14,9 +33,18 @@ menuBtn.addEventListener("click", () => {
 // ===============================
 
 document.querySelectorAll(".nav-links a").forEach(link => {
+
     link.addEventListener("click", () => {
-        navLinks.classList.remove("show-menu");
+
+        navLinks.classList.remove("active");
+
+        const icon = menuBtn.querySelector("i");
+
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-bars");
+
     });
+
 });
 
 // ===============================
